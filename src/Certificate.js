@@ -63,7 +63,7 @@ const Certificate = ({ name, description, certificateId, date }) => {
           margin: '0 auto',
           fontFamily: 'Arial, sans-serif',
           boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.2)',  
-          backgroundImage: {bg},  // Path to the watermark image
+          backgroundImage: `url(${bg})`,  // Path to the watermark image
           backgroundSize: 'contain',  // Adjust size of the watermark
           backgroundRepeat: 'no-repeat',  // Prevent repeating the watermark
           backgroundPosition: 'center',
