@@ -4,10 +4,10 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 // import images
-import bg from "../public/Assets/bg.png";
-import logo from "../public/Assets/logo.png";
-import sign from "../public/Assets/sign.png";
-import batch from "../public/Assets/batch.png";
+import bg from "./Assets/bg.png";
+import logo from "./Assets/logo.png";
+import sign from "./Assets/sign.png";
+import batch from "./Assets/batch.png";
 
 const Certificate = ({ name, description, certificateId, date }) => {
   const certificateRef = useRef();
@@ -63,7 +63,7 @@ const Certificate = ({ name, description, certificateId, date }) => {
           margin: '0 auto',
           fontFamily: 'Arial, sans-serif',
           boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.2)',  
-          backgroundImage: 'url(/assets/bg.png)',  // Path to the watermark image
+          backgroundImage: {bg},  // Path to the watermark image
           backgroundSize: 'contain',  // Adjust size of the watermark
           backgroundRepeat: 'no-repeat',  // Prevent repeating the watermark
           backgroundPosition: 'center',
