@@ -3,6 +3,12 @@ import { Box, Typography, Button } from '@mui/material';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
+// import images
+import bg from "../public/Assets/bg.png";
+import logo from "../public/Assets/logo.png";
+import sign from "../public/Assets/sign.png";
+import batch from "../public/Assets/batch.png";
+
 const Certificate = ({ name, description, certificateId, date }) => {
   const certificateRef = useRef();
 
@@ -67,7 +73,7 @@ const Certificate = ({ name, description, certificateId, date }) => {
        <Box sx={{ display: 'flex', alignItems: 'center', position: 'absolute', top: '20px', left: '20px' }}>
           {/* Tublian Logo */}
           <img
-            src="/assets/logo.png"
+            src={logo}
             alt="Tublian Logo"
             style={{ width: '50px', marginRight: '10px' }}
           />
@@ -107,7 +113,7 @@ const Certificate = ({ name, description, certificateId, date }) => {
 
         {/* Signature and Title */}
         <Box sx={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
-          <img src="/assets/sign.png" alt="Signature" style={{ width: '150px', marginBottom: '10px' }} />
+          <img src={sign} alt="Signature" style={{ width: '150px', marginBottom: '10px' }} />
           <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '5px', fontFamily: 'Poppins, Arial, sans-serif' }}>
             Nilanjan Raychaudhuri
           </Typography>
@@ -118,7 +124,7 @@ const Certificate = ({ name, description, certificateId, date }) => {
 
         {/* Certificate ID and Date */}
         <Box sx={{ position: 'absolute', bottom: '20px', right: '20px', textAlign: 'right', display: 'flex', alignItems: 'center' }}>
-          <img src="/assets/batch.png" alt="Batch" style={{ width: '50px', marginRight: '10px' }} />
+          <img src={batch} alt="Batch" style={{ width: '50px', marginRight: '10px' }} />
           <Box sx={{ textAlign: 'left' }}>
             <Typography variant="body1" sx={{ color: '#FF5722', fontWeight: 'bold', marginBottom: '5px', fontFamily: 'Poppins, Arial, sans-serif' }}>
               CERTIFIED
