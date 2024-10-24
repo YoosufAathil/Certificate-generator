@@ -1,10 +1,4 @@
-
-// export const fetchData = async () => {
-//   // data fetching logic
-//   const response = await fetch('https://api.example.com/certificate-data');
-//   const data = await response.json();
-//   return data;
-// };
+import { courses } from './Courses';
 
 // Helper function to generate a unique 4-digit number
 const generateUniqueNumber = () => {
@@ -17,22 +11,29 @@ const generateCertificateId = (username) => {
   return `8020-${username}-${uniqueNumber}`;
 };
 
-export const fetchData = async () => {
+export const fetchData = async (username, courseId) => {
   // Check if a date already exists in local storage
-  let date = localStorage.getItem('certificateDate');
+  let date = localStorage.getItem(`certificateDate-${courseId}`);
   if (!date) {
     // Generate a new date if it doesn't exist
     date = new Date().toLocaleDateString();
-    localStorage.setItem('certificateDate', date);
+    localStorage.setItem(`certificateDate-${courseId}`, date);
   }
 
-  // Dummy data for testing
-  const username = 'yosufaathil';
-  const certificateId = generateCertificateId(username);
+  // Check if a certificate ID already exists in local storage
+  let certificateId = localStorage.getItem(`certificateId-${courseId}`);
+  if (!certificateId) {
+    // Generate a new certificate ID if it doesn't exist
+    certificateId = generateCertificateId(username);
+    localStorage.setItem(`certificateId-${courseId}`, certificateId);
+  }
+
+  // Find the course by ID
+  const course = courses.find(c => c.id === parseInt(courseId));
 
   return {
-    name: 'Yoosuf Aathil',
-    description: `successfully completed the 4-Week AI Internship Program at Tublian,\ndemonstrating exceptional dedication and a commendable work ethic\nthroughout the internship. The contributions made, including the\ndevelopment of an advanced chatbot, have added significant value to the AI community.`,
+    name: username,
+    description: course ? course.description : 'Course description not found.',
     certificateId: certificateId,
     date: date
   };
