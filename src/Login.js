@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setUsername }) => {
   const [username, setUsernameInput] = useState('');
+  const [fullName, setFullNameInput] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (username) {
-      setUsername(username);
-      localStorage.setItem('username', username);
+    if (username && fullName) {
+      setUsername(username, fullName);
       navigate('/dashboard');
     }
   };
@@ -33,6 +33,13 @@ const Login = ({ setUsername }) => {
         variant="outlined"
         value={username}
         onChange={(e) => setUsernameInput(e.target.value)}
+        sx={{ marginBottom: '20px', width: '300px' }}
+      />
+      <TextField
+        label="Full Name"
+        variant="outlined"
+        value={fullName}
+        onChange={(e) => setFullNameInput(e.target.value)}
         sx={{ marginBottom: '20px', width: '300px' }}
       />
       <Button variant="contained" color="primary" onClick={handleLogin}>

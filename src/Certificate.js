@@ -11,7 +11,7 @@ import logo from './Assets/logo.png';
 import signature from './Assets/sign.png';
 import batch from './Assets/batch.png';
 
-const Certificate = ({ username }) => {
+const Certificate = ({ username, fullName }) => {
   const { courseId } = useParams();
   const certificateRef = useRef();
   const [name, setName] = useState('');
@@ -21,7 +21,7 @@ const Certificate = ({ username }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetchData(username, courseId);
+      const data = await fetchData(username, fullName, courseId);
       setName(data.name);
       setDescription(data.description);
       setCertificateId(data.certificateId);
@@ -29,7 +29,7 @@ const Certificate = ({ username }) => {
     };
 
     getData();
-  }, [username, courseId]);
+  }, [username, fullName, courseId]);
 
   const downloadCertificate = () => {
     const certificateElement = certificateRef.current;
@@ -113,10 +113,10 @@ const Certificate = ({ username }) => {
               CERTIFIED
             </Typography>
             <Typography variant="body2" sx={{ color: '#555', fontFamily: 'Poppins, Arial, sans-serif' }}>
-              {certificateId}
+             {certificateId}
             </Typography>
             <Typography variant="body2" sx={{ color: '#555', fontFamily: 'Poppins, Arial, sans-serif' }}>
-            {date}
+             {date}
             </Typography>
           </Box>
         </Box>
