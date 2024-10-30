@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import { useParams } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { fetchData } from './fetchData'; 
+import { fetchData } from './fetchData'; // Import the fetchData function
 
 // Import images
 import bg from './Assets/bg.png';
@@ -10,7 +11,8 @@ import logo from './Assets/logo.png';
 import signature from './Assets/sign.png';
 import batch from './Assets/batch.png';
 
-const Certificate = () => {
+const Certificate = ({ username, fullName }) => {
+  const { courseId } = useParams();
   const certificateRef = useRef();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -19,7 +21,7 @@ const Certificate = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetchData();
+      const data = await fetchData(username, fullName, courseId);
       setName(data.name);
       setDescription(data.description);
       setCertificateId(data.certificateId);
@@ -27,7 +29,7 @@ const Certificate = () => {
     };
 
     getData();
-  }, []);
+  }, [username, fullName, courseId]);
 
   const downloadCertificate = () => {
     const certificateElement = certificateRef.current;
@@ -86,7 +88,7 @@ const Certificate = () => {
         <Typography variant="h5" sx={{ color: '#FC3946', fontStyle: 'medium', marginBottom: '40px', textAlign: 'left', fontFamily: 'Poppins, Arial, sans-serif', letterSpacing: '2px', marginLeft: '20px' }}>
           OF INTERNSHIP
         </Typography>
-        <Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', marginTop: '40px', fontFamily: 'Poppins, Arial, sans-serif', marginLeft: '20px' }}>
+        <Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'left', marginTop: '40px', fontFamily: 'Poppins, Arial, sans-serif', marginLeft: '20px' }}>
           {name}
         </Typography>
         <Box sx={{ borderBottom: '2px solid #FD642E', width: '80%', marginBottom: '20px', marginLeft: '20px' }}></Box>
